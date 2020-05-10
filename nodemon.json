@@ -1,0 +1,8 @@
+{
+    "env": {
+        "MONGO_ATLAS_PW": "rest-shop",
+        "DB_PW": "d!k$h@123",
+        "USER": "diksha-deep",
+        "PORT": 8080
+    }
+}

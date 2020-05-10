@@ -3,26 +3,12 @@ const app = express();
 const morgan = require("morgan");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
-const MongoClient = require('mongodb').MongoClient;
 
 mongoose.connect(
-  `mongodb+srv://diksha-deep:${process.env.DB_PW}@cluster0-v8wlx.mongodb.net/test?retryWrites=true&w=majority`,
+  `mongodb+srv://diksha-deep:${process.env.MONGO_ATLAS_PW}@cluster0-v8wlx.mongodb.net/gotGame?retryWrites=true&w=majority`,
   { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true }
 );
 mongoose.Promise = global.Promise;
-
-
-const uri = `mongodb+srv://diksha-deep:${process.env.DB_PW}@cluster0-v8wlx.mongodb.net/test?retryWrites=true&w=majority`;
-const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
-client.connect(err => {
-  if(err) {
-    console.log('WE got an error: ', err)
-  }  
-  const collection = client.db("gotGame").collection("battles");
-  console.log('We are connected')
-  // perform actions on the collection object
-  client.close();
-});
 
 
 const battleListRoutes = require('./api/routes/battles');
@@ -45,11 +31,11 @@ app.use((req, res, next) => {
 });
 
 //  Routes which handles the request;
-app.use("/list", battleListRoutes);
+app.use("/battles", battleListRoutes);
 
 app.use((req, res, next) => {
   const error = new Error("Not found");
-  
+
   error.status = 404;
   next(error);
 });

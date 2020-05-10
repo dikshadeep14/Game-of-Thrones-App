@@ -3,7 +3,7 @@
         "MONGO_ATLAS_PW": "rest-shop",
         "DB_PW": "diksha@123",
         "USER": "diksha-deep",
-        "PORT": 8080,
+        // "PORT": 8080,
         "HOST": "hotel-management-2020.herokuapp.com"
     }
 }

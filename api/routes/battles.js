@@ -10,20 +10,25 @@ router.get("/", (req, res, next) => {
     .select()
     .exec()
     .then(docs => {
+    
       const response = {
         count: docs.length,
-        list: docs.map(doc => {
-          return {
-            name: doc.name,
-            year: doc.year,
-            battle_number: doc.battle_number,
-            _id: doc._id,
-            request: {
-              type: "GET",
-              url: `http://localhost:3002/battles`
-            }
-          };
-        })
+        list: docs,
+        options: {
+          kings: [...new Set(docs.map(doc => {
+            return doc.attacker_king, doc.defender_king;
+        }))],
+        battle_type: [...new Set(docs.map(doc => {
+          return doc.battle_type
+      }))],
+      location: [...new Set(docs.map(doc => {
+        return doc.location
+    }))],
+    request: {
+      type: "GET",
+      url: `http://localhost:3002/battles`
+    }
+      }
       };
       if (docs.length > 0) {
         res.status(200).json(response);
@@ -66,7 +71,7 @@ router.get("/count", (req, res, next) => {
     .select()
     .exec()
     .then(docs => {
-      let location = [];
+      
       const response = {
         count: docs.length,
         totalBattles: docs.reduce(function (acc, obj) { return acc + obj.battle_number }, 0)
@@ -103,7 +108,10 @@ router.get("/search", (req, res, next) => {
     .select()
     .exec()
     .then(docs => {
-      const response = docs;
+      const response = {
+        count: docs.length,
+        list: docs
+      };
       if (docs.length > 0) {
         res.status(200).json(response);
       } else {

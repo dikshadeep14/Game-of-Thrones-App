@@ -110,7 +110,7 @@ router.get("/search", (req, res, next) => {
     .then(docs => {
       const response = {
         count: docs.length,
-        list: docs
+        list: docs 
       };
       if (docs.length > 0) {
         res.status(200).json(response);

@@ -3,14 +3,21 @@ const app = express();
 const morgan = require("morgan");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
-
+// const uri = `mongodb+srv://diksha-deep:${process.env.MONGO_ATLAS_PW}@cluster0-v8wlx.mongodb.net/test?retryWrites=true&w=majority`
 mongoose.connect(
   `mongodb+srv://diksha-deep:${process.env.MONGO_ATLAS_PW}@cluster0-v8wlx.mongodb.net/gotGame?retryWrites=true&w=majority`,
   { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true }
 );
 mongoose.Promise = global.Promise;
 
-
+// const MongoClient = require('mongodb').MongoClient;
+// const uri = "mongodb+srv://diksha-deep:"+process.env.MONGO_ATLAS_PW+"@cluster0-v8wlx.mongodb.net/gotGame?retryWrites=true&w=majority";
+// const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true });
+// client.connect(err => {
+//   const collection = client.db("gotGame").collection("battles");;
+//   // perform actions on the collection object
+//   client.close();
+// });
 const battleListRoutes = require('./api/routes/battles');
 
 app.use(morgan("dev"));

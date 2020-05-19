@@ -8,7 +8,7 @@ const server = http.createServer(app);
 //     var port = server.address().port;
 //     console.log("App now running on port", port);
 //   });
-server.listen(process.env.PORT, function () {
+server.listen(process.env.PORT || 8080, function () {
   var port = server.address().port;
   console.log("App now running on port", port);
 });

@@ -5,7 +5,7 @@ const mongoose = require("mongoose");
 const Battles = require("../models/battle");
 
 //  get all the battles list
-router.get("/", (req, res, next) => {
+router.get("/", (req, res) => {
   Battles.find()
     .select()
     .exec()
@@ -42,7 +42,7 @@ router.get("/", (req, res, next) => {
 });
 
 //  get all the places where the battle has taken place.
-router.get("/list", (req, res, next) => {
+router.get("/list", (req, res) => {
   Battles.find()
     .select()
     .exec()
@@ -66,7 +66,7 @@ router.get("/list", (req, res, next) => {
 });
 
 //  get the total number of battles occurred
-router.get("/count", (req, res, next) => {
+router.get("/count", (req, res) => {
   Battles.find()
     .select()
     .exec()
@@ -88,7 +88,7 @@ router.get("/count", (req, res, next) => {
 });
 
 //  search api for 
-router.get("/search", (req, res, next) => {
+router.get("/search", (req, res) => {
   var q = {}; // declare the query object
   q['$and']=[]; // filter the search by any criteria given by the user
   if(req.query.king){ // if the criteria has a value or values
@@ -110,7 +110,7 @@ router.get("/search", (req, res, next) => {
     .then(docs => {
       const response = {
         count: docs.length,
-        list: docs
+        list: docs 
       };
       if (docs.length > 0) {
         res.status(200).json(response);

@@ -1,7 +1,0 @@
-{
-    "env": {
-        "MONGO_ATLAS_PW": "rest-shop",
-        "DB_PW": "diksha@123",
-        "USER": "diksha-deep"
-    }
-}

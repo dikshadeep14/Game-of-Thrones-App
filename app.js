@@ -3,11 +3,19 @@ const app = express();
 const morgan = require("morgan");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
+require("dotenv").config();
 // const uri = `mongodb+srv://diksha-deep:${process.env.MONGO_ATLAS_PW}@cluster0-v8wlx.mongodb.net/test?retryWrites=true&w=majority`
-mongoose.connect(
-  `mongodb+srv://diksha-deep:${process.env.MONGO_ATLAS_PW}@cluster0-v8wlx.mongodb.net/gotGame?retryWrites=true&w=majority`,
-  { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true }
-);
+console.log("line 8 "+process.env.MONGO_ATLAS_PW);
+try{
+  mongoose.connect(
+    `mongodb+srv://diksha-deep:${process.env.MONGO_ATLAS_PW}@cluster0-v8wlx.mongodb.net/gotGame?retryWrites=true&w=majority`,
+    { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true }
+  );
+}
+catch(error){
+  console.log("error in line 14 "+error);
+}
+
 mongoose.Promise = global.Promise;
 
 // const MongoClient = require('mongodb').MongoClient;

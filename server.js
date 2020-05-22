@@ -1,6 +1,6 @@
 const http = require('http');
 const app = require('./app');
-
+require("dotenv").config();
 // const port = process.env.PORT || 8080;
 
 const server = http.createServer(app);
@@ -8,7 +8,7 @@ const server = http.createServer(app);
 //     var port = server.address().port;
 //     console.log("App now running on port", port);
 //   });
-server.listen(process.env.PORT || 8080, function () {
-  var port = server.address().port;
+server.listen(process.env.PORT , function () {
+  let port = server.address().port;
   console.log("App now running on port", port);
 });
